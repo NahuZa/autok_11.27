@@ -1,10 +1,20 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+</head>
+<body>
+<html><p>A kapcsolat állapota:</p></html>
 <?php
 require_once('csv-tools.php');
 require_once('db-tools.php');
 require_once('MakersDbTools.php');
 ini_set('memory_limit','1024M');
 $fileName = 'car-db.csv';
-$csvData = getCsvData($fileName);
+$csvData = getCsvData($fileName);   
 
 if(empty($csvData)){
     echo "Nem található adat a csv fájlban.";
@@ -19,7 +29,9 @@ if(empty($csvData)){
     }*/
 $makerDbTool=new MakersDbTools();
 echo "connected <br>";
-
+?>
+<p>Az autók:</p>
+<?php 
 $makers=getmakers($csvData);
 
 $result=$makerDbTool->insertMakers($makers, true);
@@ -30,3 +42,5 @@ echo "$cnt sor van;\n";
 
 
 ?>      
+</body>
+</html>

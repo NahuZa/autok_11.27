@@ -1,6 +1,7 @@
+
 <?php
 class MakersDbTools{
-    const DBTABLE = 'makers';
+    const DBTABLE = 'makers'; 
 
     private $mysqli;
 
