@@ -1,7 +1,7 @@
 <?php
 require_once('csv-tools.php');
-require_once('db.tools.php');
-require_once('MarkersDbTools.php');
+require_once('db-tools.php');
+require_once('MakersDbTools.php');
 ini_set('memory_limit','1024M');
 $fileName = 'car-db.csv';
 $csvData = getCsvData($fileName);
@@ -17,17 +17,16 @@ if(empty($csvData)){
         echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
         exit();
     }*/
-$makerDbTool=new MarkersDbTools();
+$makerDbTool=new MakersDbTools();
 echo "connected <br>";
 
 $makers=getmakers($csvData);
 
-$result=insertMakers($makers, true);
+$result=$makerDbTool->insertMakers($makers, true);
 
 $allMakers=$makerDbTool->getAllMakers();
 $cnt= count($allMakers);
-echo "$cnt sor van;\n";
+echo "$cnt sor van;\n"; 
 
-$mysqli -> close();
 
 ?>      
