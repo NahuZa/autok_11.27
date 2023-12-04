@@ -22,6 +22,10 @@ $makers=getmakers($csvData);
 
 $result=insertMakers($mysqli,$makers, true);
 
+$makers=getAllMakers($mysqli);
+$cnt= count($makers);
+echo "$cnt sor van;\n";
+
 $mysqli -> close();
 
 ?>      
