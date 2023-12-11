@@ -5,13 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cars</title>
+
+    <script src="js/jquery-3.7.1.js" type="text/javascript"></script>
+    <script src="js/cars.js" type="text/javascript"></script>
+
+    <link href="fontawesom/css/all.css" rel="stylesheet" type="text/css">
+    <link href="css/cars.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-<html><p>A kapcsolat állapota:</p></html>
+    <nav>
+        <a href="makers.php"><button>Gyártók</button></a>
+        <a href="models.php"><button>Modellek</button></a>
+    </nav>
+</html>
 <?php
 require_once('csv-tools.php');
 require_once('db-tools.php');
-require_once('MakersDbTools.php');
+require_once('DBMaker.php');
+require_once('DB.php');
 ini_set('memory_limit','1024M');
 $fileName = 'car-db.csv';
 $csvData = getCsvData($fileName);   
@@ -27,11 +39,9 @@ if(empty($csvData)){
         echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
         exit();
     }*/
-$makerDbTool=new MakersDbTools();
+$makerDbTool=new DB();
 echo "connected <br>";
-?>
-<p>Az autók:</p>
-<?php 
+
 $makers=getmakers($csvData);
 
 $result=$makerDbTool->insertMakers($makers, true);
